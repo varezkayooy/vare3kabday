@@ -1508,18 +1508,454 @@
     }
 
 
-    /* search performance polish */
-    .search input {
-      will-change: contents;
+    /* party features: rules, surprise button, strength */
+    .hero-copy.welcome {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 2.5vw, 30px);
+      line-height: 1.1;
+      opacity: .92;
+      margin-top: 18px;
+    }
+
+    .house-rules {
+      width: min(720px, 100%);
+      margin: 18px auto 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255,255,255,.09);
+      backdrop-filter: blur(12px);
+    }
+
+    .rules-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .rules-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: .82;
+    }
+
+    .rules-list span {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .surprise-btn {
+      appearance: none;
+      -webkit-appearance: none;
+      margin-top: 18px;
+      border: 1px solid color-mix(in srgb, var(--accent) 70%, white);
+      background: var(--accent);
+      color: var(--buttonText);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 22%, transparent);
+      transition: transform 200ms ease, box-shadow 220ms ease, filter 220ms ease;
+    }
+
+    .surprise-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+
+    .surprise-btn:active {
+      transform: scale(.985);
+    }
+
+    .strength {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: .01em;
+    }
+
+    .strength span {
+      opacity: .64;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 9px;
+    }
+
+    .strength strong {
+      font-size: 12px;
+      letter-spacing: .08em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .strength-card {
+      margin-top: 11px;
+      padding: 7px 9px;
+    }
+
+    .strength-modal {
+      padding: 8px 10px;
+      margin-left: 0;
+    }
+
+    .singleTags,
+    #singleTags {
+      align-items: center;
     }
 
     @media (max-width: 700px) {
-      .card {
-        contain: layout paint;
+      .house-rules {
+        margin-top: 14px;
+        padding: 12px;
+        border-radius: 20px;
       }
 
-      .image-wrap {
-        contain: layout paint;
+      .rules-title {
+        font-size: 20px;
+      }
+
+      .rules-list {
+        gap: 7px;
+        font-size: 12px;
+      }
+
+      .rules-list span {
+        padding: 6px 9px;
+      }
+
+      .surprise-btn {
+        margin-top: 14px;
+        padding: 11px 16px;
+        font-size: 12px;
+      }
+
+      .strength-card {
+        margin-top: 8px;
+        padding: 6px 7px;
+      }
+
+      .strength span {
+        font-size: 8px;
+      }
+
+      .strength strong {
+        font-size: 10px;
+      }
+    }
+
+
+    /* welcome popup */
+    .welcome-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 20% 16%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 24%),
+        radial-gradient(circle at 82% 16%, color-mix(in srgb, var(--accent2) 20%, transparent), transparent 24%),
+        rgba(5, 10, 12, .46);
+      backdrop-filter: blur(18px) saturate(1.08);
+      -webkit-backdrop-filter: blur(18px) saturate(1.08);
+      color: var(--text);
+    }
+
+    .welcome-modal.show {
+      display: flex;
+      animation: welcomeFade 360ms ease both;
+    }
+
+    .welcome-modal.hide {
+      animation: welcomeOut 260ms ease both;
+    }
+
+    .welcome-card {
+      position: relative;
+      width: min(540px, 100%);
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--border) 65%, var(--text) 35%);
+      border-radius: 36px;
+      padding: clamp(26px, 5vw, 44px);
+      text-align: center;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.16), transparent 22%),
+        radial-gradient(circle at 84% 18%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 24%),
+        linear-gradient(135deg, color-mix(in srgb, var(--bg) 62%, transparent 38%), color-mix(in srgb, var(--bg2) 35%, transparent 65%));
+      box-shadow: 0 34px 100px rgba(0,0,0,.38);
+      backdrop-filter: blur(24px) saturate(1.12);
+      -webkit-backdrop-filter: blur(24px) saturate(1.12);
+      animation: welcomeCardIn 520ms cubic-bezier(.2,.9,.2,1) both;
+    }
+
+    .welcome-card::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 26px;
+      pointer-events: none;
+    }
+
+    .welcome-kicker {
+      display: inline-flex;
+      margin-bottom: 15px;
+      padding: 8px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 10px;
+      font-weight: 950;
+      opacity: .75;
+    }
+
+    .welcome-card h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: .88;
+      letter-spacing: -.065em;
+      font-weight: 600;
+      color: var(--text);
+      text-shadow: 0 16px 34px rgba(0,0,0,.24);
+    }
+
+    .welcome-text {
+      width: min(390px, 100%);
+      margin: 18px auto 0;
+      font-size: 14px;
+      line-height: 1.65;
+      opacity: .78;
+    }
+
+    .welcome-rules {
+      width: min(410px, 100%);
+      margin: 22px auto 0;
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .welcome-rules-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -.035em;
+      margin-bottom: 12px;
+    }
+
+    .welcome-rule {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .welcome-rule + .welcome-rule {
+      margin-top: 8px;
+    }
+
+    .welcome-close {
+      appearance: none;
+      -webkit-appearance: none;
+      margin-top: 22px;
+      border: 1px solid color-mix(in srgb, var(--accent) 70%, white);
+      background: var(--accent);
+      color: var(--buttonText);
+      border-radius: 999px;
+      padding: 13px 20px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 26%, transparent);
+      transition: transform 200ms ease, box-shadow 220ms ease;
+    }
+
+    .welcome-close:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 46px color-mix(in srgb, var(--accent) 34%, transparent);
+    }
+
+    .welcome-close:active {
+      transform: scale(.985);
+    }
+
+    .welcome-sparkles span {
+      position: fixed;
+      z-index: 201;
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      background: color-mix(in srgb, var(--text) 80%, var(--accent) 20%);
+      opacity: .75;
+      animation: sparkleFloat 3.8s ease-in-out infinite;
+    }
+
+    .welcome-sparkles span:nth-child(1) { left: 17vw; top: 22vh; animation-delay: -.2s; }
+    .welcome-sparkles span:nth-child(2) { right: 18vw; top: 18vh; animation-delay: -1.1s; border-radius: 50%; background: var(--accent); }
+    .welcome-sparkles span:nth-child(3) { left: 22vw; bottom: 20vh; animation-delay: -2s; background: var(--muted); }
+    .welcome-sparkles span:nth-child(4) { right: 22vw; bottom: 23vh; animation-delay: -2.8s; border-radius: 50%; }
+    .welcome-sparkles span:nth-child(5) { left: 50vw; top: 13vh; animation-delay: -1.7s; transform: rotate(45deg); background: var(--accent2); }
+
+    @keyframes sparkleFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: .45;
+      }
+      50% {
+        transform: translateY(-18px) rotate(18deg) scale(1.18);
+        opacity: .85;
+      }
+    }
+
+    @keyframes welcomeFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes welcomeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    @keyframes welcomeCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(.96) rotate(-.6deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+      }
+    }
+
+    .hero-copy.welcome {
+      display: none !important;
+    }
+
+    .hero-surprise {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 700px) {
+      .welcome-modal {
+        padding: 12px;
+      }
+
+      .welcome-card {
+        border-radius: 28px;
+        padding: 28px 18px;
+      }
+
+      .welcome-card::before {
+        inset: 10px;
+        border-radius: 20px;
+      }
+
+      .welcome-rules {
+        padding: 12px;
+        border-radius: 20px;
+      }
+
+      .welcome-rule {
+        border-radius: 18px;
+      }
+
+      .welcome-sparkles span {
+        opacity: .42;
+      }
+
+      .welcome-sparkles span:nth-child(1) { left: 7vw; top: 18vh; }
+      .welcome-sparkles span:nth-child(2) { right: 8vw; top: 22vh; }
+      .welcome-sparkles span:nth-child(3) { left: 8vw; bottom: 16vh; }
+      .welcome-sparkles span:nth-child(4) { right: 10vw; bottom: 18vh; }
+      .welcome-sparkles span:nth-child(5) { display: none; }
+    }
+
+
+    /* always-visible header rules */
+    .house-rules.always-visible {
+      display: block !important;
+      width: min(720px, 100%);
+      margin: 18px auto 0;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255,255,255,.09);
+      backdrop-filter: blur(12px);
+    }
+
+    .house-rules.always-visible .rules-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .house-rules.always-visible .rules-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: .82;
+    }
+
+    .house-rules.always-visible .rules-list span {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+    }
+
+    @media (max-width: 700px) {
+      .house-rules.always-visible {
+        margin-top: 14px;
+        padding: 12px;
+        border-radius: 20px;
+      }
+
+      .house-rules.always-visible .rules-title {
+        font-size: 20px;
+      }
+
+      .house-rules.always-visible .rules-list {
+        gap: 7px;
+        font-size: 12px;
+      }
+
+      .house-rules.always-visible .rules-list span {
+        padding: 6px 9px;
       }
     }
 
@@ -1542,13 +1978,40 @@
   <div class="cute-decor decor-d"></div>
   <div class="cute-decor decor-e"></div>
 
+  
+  <div class="welcome-modal show" id="welcomeModal" aria-hidden="false">
+    <div class="welcome-sparkles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="welcome-card">
+      <div class="welcome-kicker">birthday bar is open</div>
+      <h2>Welcome to Varezka B’day Bar</h2>
+      <p class="welcome-text">Choose a category, tap a card and open exact measurements.<br>Выбери категорию, нажми на карточку и открой точные граммовки.</p>
+
+      <div class="welcome-rules">
+        <div class="welcome-rules-title">Rules</div>
+        <div class="welcome-rule">drink water</div>
+        <div class="welcome-rule">one cocktail = one compliment to the birthday girl</div>
+      </div>
+
+      <button class="welcome-close" id="welcomeCloseBtn" type="button">Enter the bar</button>
+    </div>
+  </div>
+
+
   <main class="wrap">
     <section class="hero">
       <div class="hero-text-only">
         <h1 class="brand">varezka b'day</h1>
         <h2 class="subtitle">Cocktail menu</h2>
-        <p class="hero-copy">Choose a category, tap a card and open exact measurements.</p>
-        <p class="hero-copy ru">Выбери категорию, нажми на карточку и открой точные граммовки.</p>
+        <div class="house-rules always-visible">
+          <div class="rules-title">Rules</div>
+          <div class="rules-list">
+            <span>drink water</span>
+            <span>one cocktail = one compliment to the birthday girl</span>
+          </div>
+        </div>
+        <button class="surprise-btn hero-surprise" id="surpriseBtn" type="button">Surprise me</button>
       </div>
       <div class="hero-art" id="heroArt"></div>
     </section>
@@ -1735,6 +2198,38 @@
 
     const CATEGORIES = ["All", "Pool Party", "Fresh & Sparkling", "Cinema Night", "Easy Classics"];
 
+    const STRENGTH = {
+      "pina-colada": 3,
+      "blue-hawaii": 3,
+      "daiquiri": 4,
+      "strawberry-daiquiri": 3,
+      "strawberry-coconut-daiquiri": 3,
+      "mojito": 3,
+      "cuba-libre": 3,
+      "pornstar-martini": 4,
+      "vanilla-cream": 3,
+      "sea-breeze": 3,
+      "bay-breeze": 3,
+      "vodka-sour": 4,
+      "vodka-collins": 3,
+      "screwdriver": 3,
+      "vodka-shot": 5,
+      "frozen-limoncello": 3,
+      "i-need-a-vacation": 3,
+      "limoncello-spritz": 2,
+      "italian-lemon-cream-martini": 4,
+      "white-russian": 4,
+      "bloody-mary": 3,
+      "cherry-basil-smash": 3,
+      "gin-tonic": 3
+    };
+
+    function strengthStars(drink) {
+      const value = STRENGTH[drink.id] || 3;
+      return "★".repeat(value) + "☆".repeat(5 - value);
+    }
+
+
     const DRINKS = [
       {id:"pina-colada", title:"Piña Colada", category:"Pool Party", base:"Белый ром", tags:["tropical","creamy","frozen"], short:"Creamy tropical frozen cocktail with whipped cream, cherry and pineapple.", ingredientsLine:"белый ром, ананасовый сок, кокосовые сливки, сливки 10%, лайм, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 80–100 мл","Кокосовые сливки — 40–50 мл","Сливки 10% — 20–30 мл","Сок лайма — 5–10 мл","Лед — 180–220 г","Ананас для украшения — 1 кусочек"], method:"Все взбить в блендере до густой frozen-текстуры. Если жидко — добавить лед, если слишком густо — немного ананасового сока.", art:{glass:"hurricane",color1:"#FFF0B5",color2:"#F7D77C",garnish:["whip","cherry","pineapple"]}},
       {id:"blue-hawaii", title:"Blue Hawaii", category:"Pool Party", base:"Белый ром", tags:["blue","pool","tropical"], short:"Bright tropical blue cocktail for the pool.", ingredientsLine:"белый ром, ананасовый сок, сироп Blue Curaçao, кокосовые сливки по желанию, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 100 мл","Сироп Blue Curaçao — 20–25 мл","Кокосовые сливки — 20–30 мл, по желанию","Лед — 150–200 г"], method:"Взбить в блендере или собрать в стакане со льдом и перемешать.", art:{glass:"hurricane",color1:"#7BE6F2",color2:"#2AB0E5",garnish:["umbrella","pineapple"]}},
@@ -1772,6 +2267,7 @@
     const categoryTitle = document.getElementById("categoryTitle");
     const categorySubtitle = document.getElementById("categorySubtitle");
     const searchInput = document.getElementById("searchInput");
+    const surpriseBtn = document.getElementById("surpriseBtn");
     const heroArt = document.getElementById("heroArt");
     const singleView = document.getElementById("singleView");
     const singleCloseBtn = document.getElementById("singleCloseBtn");
@@ -1787,6 +2283,36 @@
     const singleMeasurements = document.getElementById("singleMeasurements");
     const singleMethod = document.getElementById("singleMethod");
     const toast = document.getElementById("toast");
+
+    const welcomeModal = document.getElementById("welcomeModal");
+    const welcomeCloseBtn = document.getElementById("welcomeCloseBtn");
+
+    function closeWelcomeModal() {
+      if (!welcomeModal) return;
+      welcomeModal.classList.add("hide");
+      window.setTimeout(() => {
+        welcomeModal.classList.remove("show", "hide");
+        welcomeModal.setAttribute("aria-hidden", "true");
+      }, 260);
+      try {
+        sessionStorage.setItem("welcomeClosed", "1");
+      } catch (e) {}
+    }
+
+    try {
+      if (sessionStorage.getItem("welcomeClosed") === "1" && welcomeModal) {
+        welcomeModal.classList.remove("show");
+        welcomeModal.setAttribute("aria-hidden", "true");
+      }
+    } catch (e) {}
+
+    if (welcomeCloseBtn) welcomeCloseBtn.addEventListener("click", closeWelcomeModal);
+    if (welcomeModal) {
+      welcomeModal.addEventListener("click", (event) => {
+        if (event.target === welcomeModal) closeWelcomeModal();
+      });
+    }
+
 
     function setTheme(name) {
       const t = THEMES[name] || THEMES.All;
@@ -1939,6 +2465,7 @@ function defaultDrinkSVG(drink) {
                 <div class="category-pill">${escapeHtml(drink.category)}</div>
               </div>
               <div class="tags">${drink.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+              <div class="strength strength-card"><span>Strength</span><strong>${strengthStars(drink)}</strong></div>
               <div class="open-hint">Open recipe →</div>
             </div>
           </button>
@@ -1958,7 +2485,7 @@ function defaultDrinkSVG(drink) {
       singleBase.textContent = drink.base;
       singleTitle.textContent = drink.title;
       singleShort.textContent = drink.short;
-      singleTags.innerHTML = drink.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+      singleTags.innerHTML = drink.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("") + `<div class="strength strength-modal"><span>Strength</span><strong>${strengthStars(drink)}</strong></div>`;
       singleIngredients.textContent = drink.ingredientsLine;
       singleMeasurements.innerHTML = drink.measurements.map(m => `<li>${escapeHtml(m)}</li>`).join("");
       singleMethod.textContent = drink.method;
@@ -1996,23 +2523,26 @@ function defaultDrinkSVG(drink) {
       setTimeout(() => toast.classList.remove("show"), 1400);
     }
 
+
+    function openRandomDrink() {
+      const pool = filteredDrinks();
+      const list = pool.length ? pool : DRINKS;
+      const randomDrink = list[Math.floor(Math.random() * list.length)];
+      if (randomDrink) openSingle(randomDrink.id);
+    }
+
     function render() {
       renderTabs();
       renderHero();
       renderCards();
     }
 
-    
-    let searchTimer = null;
-    searchInput.addEventListener("input", (e) => {
-      const value = e.target.value;
-      window.clearTimeout(searchTimer);
-      searchTimer = window.setTimeout(() => {
-        searchQuery = value;
-        renderCards();
-      }, 140);
-    });
+    if (surpriseBtn) surpriseBtn.addEventListener("click", openRandomDrink);
 
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderCards();
+    });
 
     singleCloseBtn.addEventListener("click", closeSingle);
     if (singleBackBtn) singleBackBtn.addEventListener("click", closeSingle);
@@ -2020,7 +2550,7 @@ function defaultDrinkSVG(drink) {
       if (event.target === singleView) closeSingle();
     });
     singleCopyBtn.addEventListener("click", () => { if (singleDrink) copyRecipe(singleDrink.id); });
-    window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSingle(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeWelcomeModal(); closeSingle(); } });
 
     setTheme(activeCategory);
     render();

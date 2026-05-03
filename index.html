@@ -1507,6 +1507,22 @@
       }
     }
 
+
+    /* search performance polish */
+    .search input {
+      will-change: contents;
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        contain: layout paint;
+      }
+
+      .image-wrap {
+        contain: layout paint;
+      }
+    }
+
 </style>
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -1986,10 +2002,17 @@ function defaultDrinkSVG(drink) {
       renderCards();
     }
 
+    
+    let searchTimer = null;
     searchInput.addEventListener("input", (e) => {
-      searchQuery = e.target.value;
-      renderCards();
+      const value = e.target.value;
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(() => {
+        searchQuery = value;
+        renderCards();
+      }, 140);
     });
+
 
     singleCloseBtn.addEventListener("click", closeSingle);
     if (singleBackBtn) singleBackBtn.addEventListener("click", closeSingle);

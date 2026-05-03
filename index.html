@@ -2141,137 +2141,6 @@
     .welcome-kicker {
       font-family: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif !important;
     }
-
-
-
-    /* visible film grain on backgrounds only — text and cocktail images stay clean */
-    :root {
-      --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.42 0.42 0.42 0 0 0.42 0.42 0.42 0 0 0.42 0.42 0.42 0 0 0 0 0 .68 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    body {
-      background:
-        var(--grain-url),
-        radial-gradient(circle at 50% -20%, rgba(255,255,255,.07), transparent 28%),
-        linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 84%, black 16%)) !important;
-      background-size: 160px 160px, auto, auto !important;
-      background-blend-mode: overlay, normal, normal !important;
-    }
-
-    .hero,
-    .bar,
-    .card,
-    .image-wrap,
-    .single-card,
-    .single-art,
-    .single-panel,
-    .house-rules,
-    .welcome-card,
-    .welcome-rules,
-    .approved-toast,
-    .search,
-    .tab,
-    .btn,
-    .surprise-btn,
-    .welcome-close,
-    .open-hint,
-    .tag,
-    .strength,
-    .category-pill {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .hero::after,
-    .bar::after,
-    .card::after,
-    .image-wrap::after,
-    .single-card::after,
-    .single-art::after,
-    .single-panel::after,
-    .house-rules::after,
-    .welcome-card::after,
-    .welcome-rules::after,
-    .approved-toast::after,
-    .search::after,
-    .tab::after,
-    .btn::after,
-    .surprise-btn::after,
-    .welcome-close::after,
-    .open-hint::after,
-    .tag::after,
-    .strength::after,
-    .category-pill::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      background-image: var(--grain-url);
-      background-size: 125px 125px;
-      opacity: .22;
-      mix-blend-mode: overlay;
-    }
-
-    .hero > *,
-    .bar > *,
-    .card > *,
-    .image-wrap > *,
-    .single-card > *,
-    .single-art > *,
-    .single-panel > *,
-    .house-rules > *,
-    .welcome-card > *,
-    .welcome-rules > *,
-    .approved-toast > *,
-    .search > *,
-    .tab > *,
-    .btn > *,
-    .surprise-btn > *,
-    .welcome-close > *,
-    .open-hint > *,
-    .tag > *,
-    .strength > *,
-    .category-pill > * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .drink-photo,
-    .drink-svg,
-    svg,
-    img {
-      position: relative;
-      z-index: 3;
-    }
-
-    @media (max-width: 700px) {
-      .hero::after,
-      .bar::after,
-      .card::after,
-      .image-wrap::after,
-      .single-card::after,
-      .single-art::after,
-      .single-panel::after,
-      .house-rules::after,
-      .welcome-card::after,
-      .welcome-rules::after {
-        opacity: .18;
-      }
-
-      .tab::after,
-      .btn::after,
-      .surprise-btn::after,
-      .welcome-close::after,
-      .open-hint::after,
-      .tag::after,
-      .strength::after,
-      .category-pill::after {
-        opacity: .16;
-      }
-    }
-
 </style>
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -2338,7 +2207,7 @@
       <div class="tabs" id="tabs"></div>
       <label class="search">
         <span>⌕</span>
-        <input id="searchInput" type="search" placeholder="Поиск: pineapple, сливочный, водка..." />
+        <input id="searchInput" type="search" placeholder="Поиск: ананас, сливочный, водка..." />
       </label>
     </section>
 
@@ -2365,7 +2234,7 @@
         </div>
         <div class="bar-item">
           <strong>Свежие добавки</strong>
-          <p>лайм, лимон, мята, базилик, вишня, клубника, pineapple, сельдерей, специи</p>
+          <p>лайм, лимон, мята, базилик, вишня, клубника, ананас, сельдерей, специи</p>
         </div>
       </div>
     </section>
@@ -2597,29 +2466,29 @@
 
 
     const DRINKS = [
-      {id:"pina-colada", title:"Piña Colada", category:"Pool Party", base:"Белый ром", tags:["tropical","creamy","frozen"], short:"Сливочный тропический коктейль со сливками, вишенкой и ананасом.", ingredientsLine:"белый ром, ананасовый сок, кокосовые сливки, сливки 10%, лайм, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 80–100 мл","Кокосовые сливки — 40–50 мл","Сливки 10% — 20–30 мл","Сок лайма — 5–10 мл","Лед — 180–220 г","Pineapple для украшения — 1 кусочек"], method:"Все взбить в блендере до густой frozen-текстуры. Если жидко — добавить лед, если слишком густо — немного ананасового сока.", art:{glass:"hurricane",color1:"#FFF0B5",color2:"#F7D77C",garnish:["whip","cherry","pineapple"]}},
-      {id:"blue-hawaii", title:"Blue Hawaii", category:"Pool Party", base:"Белый ром", tags:["blue","pool","tropical"], short:"Яркий голубой коктейль для бассейна.", ingredientsLine:"белый ром, ананасовый сок, сироп Blue Curaçao, кокосовые сливки по желанию, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 100 мл","Сироп Blue Curaçao — 20–25 мл","Кокосовые сливки — 20–30 мл, по желанию","Лед — 150–200 г"], method:"Взбить в блендере или собрать в стакане со льдом и перемешать.", art:{glass:"hurricane",color1:"#7BE6F2",color2:"#2AB0E5",garnish:["umbrella","pineapple"]}},
+      {id:"pina-colada", title:"Piña Colada", category:"Pool Party", base:"Белый ром", tags:["tropical","creamy","frozen"], short:"Сливочный тропический коктейль со сливками, вишенкой и ананасом.", ingredientsLine:"белый ром, ананасовый сок, кокосовые сливки, сливки 10%, лайм, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 80–100 мл","Кокосовые сливки — 40–50 мл","Сливки 10% — 20–30 мл","Сок лайма — 5–10 мл","Лед — 180–220 г","Ананас для украшения — 1 кусочек"], method:"Все взбить в блендере до густой замороженной текстуры. Если жидко — добавить лед, если слишком густо — немного ананасового сока.", art:{glass:"hurricane",color1:"#FFF0B5",color2:"#F7D77C",garnish:["whip","cherry","ананас"]}},
+      {id:"blue-hawaii", title:"Blue Hawaii", category:"Pool Party", base:"Белый ром", tags:["blue","pool","tropical"], short:"Яркий голубой коктейль для бассейна.", ingredientsLine:"белый ром, ананасовый сок, сироп Blue Curaçao, кокосовые сливки по желанию, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 100 мл","Сироп Blue Curaçao — 20–25 мл","Кокосовые сливки — 20–30 мл, по желанию","Лед — 150–200 г"], method:"Взбить в блендере или собрать в стакане со льдом и перемешать.", art:{glass:"hurricane",color1:"#7BE6F2",color2:"#2AB0E5",garnish:["umbrella","ананас"]}},
       {id:"daiquiri", title:"Daiquiri", category:"Easy Classics", base:"Белый ром", tags:["sour","classic","clean"], short:"Простая кислая классика на роме.", ingredientsLine:"белый ром, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Сок лайма/лимона — 25 мл","Сахарный сироп — 15–20 мл","Лед — 150–200 г"], method:"Встряхнуть в шейкере со льдом или хорошо перемешать в стакане.", art:{glass:"coupe",color1:"#F8F3B2",color2:"#F3D66E",garnish:["lime"]}},
-      {id:"strawberry-daiquiri", title:"Strawberry Daiquiri", category:"Pool Party", base:"Белый ром", tags:["berry","frozen","summer"], short:"Клубничная frozen-классика.", ingredientsLine:"белый ром, замороженная клубника, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Замороженная клубника — 120–150 г","Сок лайма/лимона — 20–25 мл","Сахарный сироп — 15–20 мл","Лед — 100–150 г"], method:"Все взбить в блендере до слаша.", art:{glass:"coupe",color1:"#FF9EB0",color2:"#FF506E",garnish:["strawberry"]}},
+      {id:"strawberry-daiquiri", title:"Strawberry Daiquiri", category:"Pool Party", base:"Белый ром", tags:["berry","frozen","summer"], short:"Клубничная frozen-классика.", ingredientsLine:"белый ром, замороженная клубника, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Замороженная клубника — 120–150 г","Сок лайма/лимона — 20–25 мл","Сахарный сироп — 15–20 мл","Лед — 100–150 г"], method:"Все взбить в блендере до густой ледяной текстуры.", art:{glass:"coupe",color1:"#FF9EB0",color2:"#FF506E",garnish:["strawberry"]}},
       {id:"strawberry-coconut-daiquiri", title:"Strawberry & Coconut Daiquiri", category:"Pool Party", base:"Белый ром", tags:["berry","coconut","blender"], short:"Розовый замороженный daiquiri с мягким кокосовым вкусом.", ingredientsLine:"белый ром, замороженная клубника, кокосовое молоко/сливки, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Замороженная клубника — 120–150 г","Кокосовое молоко/сливки — 40–50 мл","Сок лайма/лимона — 15–20 мл","Сахарный сироп — 10–15 мл","Лед — 100–150 г"], method:"Все взбить в блендере. Если слишком густо — добавить чуть кокоса или сока.", art:{glass:"coupe",color1:"#FFD1D8",color2:"#FF87A0",garnish:["strawberry","coconut"]}},
       {id:"mojito", title:"Mojito", category:"Fresh & Sparkling", base:"Белый ром", tags:["mint","fresh","sparkling"], short:"Свежая мятная классика, удобно делать сразу кувшином.", ingredientsLine:"белый ром, мята, лайм, сахар, спрайт, лед", measurements:["Белый ром — 50 мл","Мята — 8–12 листиков","Лайм — 1/2 шт. или 20–25 мл сока","Сахар — 2 ч. л. или сироп 15–20 мл","Спрайт — 100–150 мл","Лед — 150–200 г"], method:"Мяту, лайм и сахар слегка размять в стакане, добавить лед, ром и спрайт, перемешать.", art:{glass:"highball",color1:"#ECFFF4",color2:"#C2EDD2",garnish:["mint","lime"]}},
       {id:"cuba-libre", title:"Cuba Libre", category:"Easy Classics", base:"Белый ром", tags:["cola","easy","classic"], short:"Быстрая классика на любой случай.", ingredientsLine:"белый ром, кола, лайм/лимон, лед", measurements:["Белый ром — 50 мл","Кола — 120–150 мл","Лайм/лимон — 1–2 дольки или 10 мл сока","Лед — 150 г"], method:"Собрать в стакане со льдом: ром, лайм, кола, перемешать.", art:{glass:"highball",color1:"#8B4B32",color2:"#4B2418",garnish:["lime"]}},
       {id:"pornstar-martini", title:"Pornstar Martini", category:"Pool Party", base:"Ванильная водка", tags:["party","passionfruit","sparkling"], short:"Сладкий, сочный и очень праздничный коктейль.", ingredientsLine:"ванильная водка, маракуйя, лайм, яичный белок, игристое, лед", measurements:["Ванильная водка — 50 мл","Сок/нектар маракуйя — 50–70 мл","Сок лайма — 10–15 мл","Яичный белок — 15–20 мл","Игристое — 50–70 мл","Лед — 150 г"], method:"Ванильную водку, маракуйю, лайм и яичный белок сначала хорошо встряхнуть без льда, затем добавить лед и встряхнуть еще раз. Перелить в бокал, игристое подать рядом или долить сверху.", art:{glass:"martini",color1:"#FFD06A",color2:"#FF9B48",garnish:["passion"]}},
       {id:"vanilla-cream", title:"Vanilla Cream", category:"Cinema Night", base:"Ванильная водка", tags:["creamy","dessert","soft"], short:"Мягкий сливочный коктейль для киновечера.", ingredientsLine:"ванильная водка, сливочный ликер, молоко/сливки 10%, лед", measurements:["Ванильная водка — 40 мл","Сливочный ликер — 40 мл","Молоко/сливки 10% — 60–80 мл","Лед — 100–150 г"], method:"Встряхнуть или хорошо перемешать со льдом, подать холодным.", art:{glass:"martini",color1:"#FFF1DF",color2:"#EED2B6",garnish:["cream"]}},
       {id:"sea-breeze", title:"Sea Breeze", category:"Fresh & Sparkling", base:"Обычная водка", tags:["cranberry","grapefruit","fresh"], short:"Розовый цитрусовый коктейль на водке.", ingredientsLine:"водка, клюквенный морс, грейпфрутовый сок, лайм, лед", measurements:["Водка — 50 мл","Клюквенный морс — 80–100 мл","Грейпфрутовый сок — 50–70 мл","Сок лайма — 10 мл","Лед — 150 г"], method:"Собрать в стакане со льдом и перемешать.", art:{glass:"highball",color1:"#FF9A9C",color2:"#EF5D73",garnish:["lime"]}},
-      {id:"bay-breeze", title:"Bay Breeze", category:"Fresh & Sparkling", base:"Обычная водка", tags:["cranberry","pineapple","fruity"], short:"Фруктовый, розовый и простой.", ingredientsLine:"водка, клюквенный морс, ананасовый сок, лайм, лед", measurements:["Водка — 50 мл","Клюквенный морс — 80–100 мл","Ананасовый сок — 50–70 мл","Сок лайма — 10 мл","Лед — 150 г"], method:"Собрать в стакане со льдом и перемешать.", art:{glass:"highball",color1:"#FFA1A5",color2:"#F26A75",garnish:["pineapple"]}},
-      {id:"vodka-sour", title:"Vodka Sour", category:"Easy Classics", base:"Обычная водка", tags:["sour","lemon","clean"], short:"Простой чистый sour.", ingredientsLine:"водка, лимонный сок, сахарный сироп, лед", measurements:["Водка — 50 мл","Лимонный сок — 25 мл","Сахарный сироп — 15–20 мл","Лед — 150 г"], method:"Встряхнуть со льдом в шейкере/банке, перелить в стакан.", art:{glass:"rocks",color1:"#FFF1A0",color2:"#FBD366",garnish:["lemon"]}},
+      {id:"bay-breeze", title:"Bay Breeze", category:"Fresh & Sparkling", base:"Обычная водка", tags:["cranberry","ананас","fruity"], short:"Фруктовый, розовый и простой.", ingredientsLine:"водка, клюквенный морс, ананасовый сок, лайм, лед", measurements:["Водка — 50 мл","Клюквенный морс — 80–100 мл","Ананасовый сок — 50–70 мл","Сок лайма — 10 мл","Лед — 150 г"], method:"Собрать в стакане со льдом и перемешать.", art:{glass:"highball",color1:"#FFA1A5",color2:"#F26A75",garnish:["ананас"]}},
+      {id:"vodka-sour", title:"Vodka Sour", category:"Easy Classics", base:"Обычная водка", tags:["sour","lemon","clean"], short:"Простой чистый sour.", ingredientsLine:"водка, лимонный сок, сахарный сироп, лед", measurements:["Водка — 50 мл","Лимонный сок — 25 мл","Сахарный сироп — 15–20 мл","Лед — 150 г"], method:"Встряхнуть со льдом в шейкере, перелить в стакан.", art:{glass:"rocks",color1:"#FFF1A0",color2:"#FBD366",garnish:["lemon"]}},
       {id:"vodka-collins", title:"Vodka Collins", category:"Fresh & Sparkling", base:"Обычная водка", tags:["lemon","sparkling","fresh"], short:"Почти как крепкий лимонад.", ingredientsLine:"водка, лимонный сок, сахарный сироп, газированная вода, лед", measurements:["Водка — 50 мл","Лимонный сок — 25 мл","Сахарный сироп — 15–20 мл","Газированная вода — 100–150 мл","Лед — 150–200 г"], method:"В стакан со льдом добавить водку, лимон и сироп, перемешать, сверху долить газированную воду.", art:{glass:"highball",color1:"#FFF7C8",color2:"#F8D971",garnish:["lemon"]}},
       {id:"screwdriver", title:"Отвертка", category:"Easy Classics", base:"Обычная водка", tags:["orange","easy","classic"], short:"Очень простой апельсиновый коктейль с водкой.", ingredientsLine:"водка, апельсиновый сок, лед", measurements:["Водка — 50 мл","Апельсиновый сок — 120–150 мл","Лед — 150 г"], method:"Ты разве не знаешь?", art:{glass:"rocks",color1:"#FFE26E",color2:"#FF9F2F",garnish:["orange"]}},
       {id:"vodka-shot", title:"Водка", category:"Easy Classics", base:"Обычная водка", tags:["shot","simple","cold"], short:"Холодная водка шотом или со льдом.", ingredientsLine:"водка", measurements:["По желанию и возможностям"], method:"Налить, посмотреть на жизнь, принять решение.", art:{glass:"shot",color1:"#F7FFFF",color2:"#D8F4FF",garnish:[]}},
       {id:"frozen-limoncello", title:"Frozen Limoncello", category:"Pool Party", base:"Лимончелло", tags:["lemon","frozen","dessert"], short:"Лимонный замороженный коктейль.", ingredientsLine:"лимончелло, ванильное мороженое, лимон, игристое, лед", measurements:["Лимончелло — 50 мл","Ванильное мороженое — 80–100 г","Сок лимона — 20 мл","Игристое — 50–70 мл","Лед — 100–150 г"], method:"Все взбить в блендере. Если густо — добавить немного игристого или лимонада.", art:{glass:"coupe",color1:"#FFF4A6",color2:"#FFD95C",garnish:["lemon","cream"]}},
-      {id:"i-need-a-vacation", title:"I Need a Vacation", category:"Easy Classics", base:"Лимончелло", tags:["pineapple","lemon","vacation"], short:"Простой тропический лимонный коктейль.", ingredientsLine:"лимончелло, лимонный сок, ананасовый сок, лед", measurements:["Лимончелло — 50 мл","Лимонный сок — 20 мл","Ананасовый сок — 100–120 мл","Лед — 150 г"], method:"Собрать в стакане со льдом и перемешать.", art:{glass:"coupe",color1:"#FFF2A1",color2:"#F9D55A",garnish:["pineapple","lemon"]}},
+      {id:"i-need-a-vacation", title:"I Need a Vacation", category:"Easy Classics", base:"Лимончелло", tags:["ананас","lemon","vacation"], short:"Простой тропический лимонный коктейль.", ingredientsLine:"лимончелло, лимонный сок, ананасовый сок, лед", measurements:["Лимончелло — 50 мл","Лимонный сок — 20 мл","Ананасовый сок — 100–120 мл","Лед — 150 г"], method:"Собрать в стакане со льдом и перемешать.", art:{glass:"coupe",color1:"#FFF2A1",color2:"#F9D55A",garnish:["ананас","lemon"]}},
       {id:"limoncello-spritz", title:"Лимончелло спритц", category:"Fresh & Sparkling", base:"Лимончелло", tags:["spritz","bubbly","lemon"], short:"Легкий, игристый и солнечный.", ingredientsLine:"лимончелло, игристое, газированная вода/газированная вода, лимон, лед", measurements:["Лимончелло — 50 мл","Игристое — 100 мл","Газированная вода/газированная вода — 50 мл","Лимон — 1–2 дольки","Лед — 150–200 г"], method:"В бокал со льдом налить лимончелло, игристое и газированную воду, аккуратно перемешать.", art:{glass:"wine",color1:"#FFF19A",color2:"#F7CF45",garnish:["lemon"]}},
-      {id:"italian-lemon-cream-martini", title:"Italian Lemon Cream Martini", category:"Cinema Night", base:"Лимончелло", tags:["creamy","lemon","dessert"], short:"Сливочный лимонный десертный коктейль.", ingredientsLine:"лимончелло, ванильная водка, сливочный ликер, молоко/сливки 10%, лед", measurements:["Лимончелло — 30 мл","Ванильная водка — 30 мл","Сливочный ликер — 30 мл","Молоко/сливки 10% — 40–60 мл","Лед — 100–150 г"], method:"Встряхнуть или хорошо перемешать со льдом. Свежий лимонный сок не добавлять, чтобы сливки не свернулись.", art:{glass:"martini",color1:"#FFF5C0",color2:"#EFD789",garnish:["cream","lemon"]}},
+      {id:"italian-lemon-cream-martini", title:"Italian Lemon Cream Martini", category:"Cinema Night", base:"Лимончелло", tags:["creamy","lemon","dessert"], short:"Сливочный лимонный десертный коктейль.", ingredientsLine:"лимончелло, ванильная водка, сливочный ликер, молоко/сливки 10%, лед", measurements:["Лимончелло — 30 мл","Ванильная водка — 30 мл","Сливочный ликер — 30 мл","Молоко/сливки 10% — 40–60 мл","Лед — 100–150 г"], method:"Встряхнуть в шейкере со льдом или хорошо перемешать в стакане. Свежий лимонный сок не добавлять, чтобы сливки не свернулись.", art:{glass:"martini",color1:"#FFF5C0",color2:"#EFD789",garnish:["cream","lemon"]}},
       {id:"white-russian", title:"White Russian", category:"Cinema Night", base:"Сливочный ликер", tags:["creamy","movie","cozy"], short:"Уютный сливочный коктейль для киновечера.", ingredientsLine:"водка, сливочный ликер, молоко/сливки, лед", measurements:["Водка — 40 мл","Сливочный ликер — 40 мл","Молоко/сливки — 60–80 мл","Лед — 100–150 г"], method:"Собрать в стакане со льдом и перемешать.", art:{glass:"rocks",color1:"#F1E4D5",color2:"#B99378",garnish:["cream"]}},
       {id:"bloody-mary", title:"Bloody Mary", category:"Easy Classics", base:"Обычная водка", tags:["savory","spicy","brunch"], short:"Пряная томатная классика с лимоном и остринкой.", ingredientsLine:"водка, томатный сок, лимонный сок, соль, перец, табаско, лед", measurements:["Водка — 50 мл","Томатный сок — 120–150 мл","Лимонный сок — 10–15 мл","Табаско — 2–4 капли, по вкусу","Соль и перец — по щепотке","Лед — 150 г"], method:"Собрать в стакане со льдом и аккуратно перемешать. По желанию добавить больше специй или каплю рассола.", art:{glass:"highball",color1:"#D25F4D",color2:"#9E4035",garnish:["celery","olive"]}},
       {id:"cherry-basil-smash", title:"Cherry Basil Smash", category:"Fresh & Sparkling", base:"Джин", tags:["cherry","basil","fresh"], short:"Свежий вишнево-базиликовый коктейль.", ingredientsLine:"джин, вишня, базилик, лайм/лимон, сахарный сироп, газированная вода, лед", measurements:["Джин — 50 мл","Вишня — 6–8 ягод или 50–70 г","Базилик — 5–7 листиков","Сок лайма/лимона — 15–20 мл","Сахарный сироп — 15–20 мл","Газированная вода — 80–120 мл","Лед — 150–200 г"], method:"Вишню, базилик, лайм и сироп слегка размять, добавить джин и лед, сверху долить газированную воду.", art:{glass:"rocks",color1:"#FF92A2",color2:"#C93156",garnish:["cherry","basil"]}},
-      {id:"gin-tonic", title:"Джин-тоник", category:"Fresh & Sparkling", base:"Джин", tags:["dry","fresh","easy"], short:"Легкий и не слишком сладкий.", ingredientsLine:"джин, тоник, лайм/лимон, лед", measurements:["Джин — 50 мл","Тоник — 120–150 мл","Лайм/лимон — 1–2 дольки","Лед — 150–200 г"], method:"Собрать в стакане со льдом и аккуратно перемешать.", art:{glass:"highball",color1:"#FAFFFF",color2:"#D7F2F7",garnish:["lime"]}}
+      {id:"gin-tonic", title:"Gin Tonic", category:"Fresh & Sparkling", base:"Джин", tags:["dry","fresh","easy"], short:"Легкий и не слишком сладкий.", ingredientsLine:"джин, тоник, лайм/лимон, лед", measurements:["Джин — 50 мл","Тоник — 120–150 мл","Лайм/лимон — 1–2 дольки","Лед — 150–200 г"], method:"Собрать в стакане со льдом и аккуратно перемешать.", art:{glass:"highball",color1:"#FAFFFF",color2:"#D7F2F7",garnish:["lime"]}}
     ];
 
     let activeCategory = "All";
@@ -2760,7 +2629,7 @@ function defaultDrinkSVG(drink) {
       const parts = [];
       if (garnish.includes("whip")) parts.push(`<path d="M70 30 C78 12,93 26,100 10 C111 28,128 15,133 33 C116 44,89 45,70 30 Z" fill="#FFF7EC" stroke="rgba(255,255,255,.88)" stroke-width="2"/>`);
       if (garnish.includes("cherry")) parts.push(`<circle cx="126" cy="30" r="8" fill="#A80F17" stroke="rgba(255,255,255,.62)" stroke-width="2"/><path d="M126 22 C125 12,133 10,139 8" stroke="#5E3E25" stroke-width="3" fill="none" stroke-linecap="round"/>`);
-      if (garnish.includes("pineapple")) parts.push(`<path d="M136 50 C154 37,169 48,170 66 C153 75,140 68,136 50 Z" fill="#F7C444" stroke="rgba(255,255,255,.68)" stroke-width="2"/><path d="M151 39 L157 23 M156 40 L169 30 M147 40 L144 24" stroke="#567F3C" stroke-width="3" stroke-linecap="round"/>`);
+      if (garnish.includes("ананас")) parts.push(`<path d="M136 50 C154 37,169 48,170 66 C153 75,140 68,136 50 Z" fill="#F7C444" stroke="rgba(255,255,255,.68)" stroke-width="2"/><path d="M151 39 L157 23 M156 40 L169 30 M147 40 L144 24" stroke="#567F3C" stroke-width="3" stroke-linecap="round"/>`);
       if (garnish.includes("umbrella")) parts.push(`<path d="M126 34 C140 12,168 12,182 34 Z" fill="#FF544C" stroke="rgba(255,255,255,.6)" stroke-width="2"/><path d="M154 34 V70" stroke="#F7F4D5" stroke-width="3"/>`);
       if (garnish.includes("lime")) parts.push(`<circle cx="142" cy="55" r="15" fill="#A7CE63" stroke="rgba(255,255,255,.75)" stroke-width="3"/><path d="M142 40 V70 M127 55 H157 M132 45 L152 65 M152 45 L132 65" stroke="rgba(255,255,255,.55)" stroke-width="2"/>`);
       if (garnish.includes("lemon")) parts.push(`<circle cx="142" cy="55" r="15" fill="#F9D94E" stroke="rgba(255,255,255,.75)" stroke-width="3"/><path d="M142 40 V70 M127 55 H157 M132 45 L152 65 M152 45 L132 65" stroke="rgba(255,255,255,.55)" stroke-width="2"/>`);

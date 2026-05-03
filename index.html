@@ -1959,6 +1959,41 @@
       }
     }
 
+
+    /* hide category tabs scrollbar */
+    .tabs {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    .tabs::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+      background: transparent !important;
+    }
+
+    .tabs::-webkit-scrollbar-track,
+    .tabs::-webkit-scrollbar-thumb {
+      display: none !important;
+      background: transparent !important;
+    }
+
+    @media (max-width: 700px) {
+      .tabs {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 10px !important;
+      }
+
+      .tabs::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+        display: none !important;
+      }
+    }
+
 </style>
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -1991,7 +2026,7 @@
       <div class="welcome-rules">
         <div class="welcome-rules-title">Rules</div>
         <div class="welcome-rule">drink water</div>
-        <div class="welcome-rule">one cocktail = one compliment to birthday girl</div>
+        <div class="welcome-rule">one compliment to birthday girl</div>
       </div>
 
       <button class="welcome-close" id="welcomeCloseBtn" type="button">Enter the bar</button>
@@ -2008,7 +2043,7 @@
           <div class="rules-title">Rules</div>
           <div class="rules-list">
             <span>drink water</span>
-            <span>one cocktail = one compliment to birthday girl</span>
+            <span>one compliment to birthday girl</span>
           </div>
         </div>
         <button class="surprise-btn hero-surprise" id="surpriseBtn" type="button">Surprise me</button>

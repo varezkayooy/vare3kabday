@@ -2141,6 +2141,228 @@
     .welcome-kicker {
       font-family: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif !important;
     }
+
+    /* safe standalone breathalyzer */
+    .breathalyzer-section {
+      margin-top: 28px;
+    }
+
+    .breathalyzer-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 24px 18px;
+      text-align: center;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--card) 85%, transparent), color-mix(in srgb, var(--card) 55%, transparent));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 24px 80px var(--shadow);
+    }
+
+    .breathalyzer-card::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .breathalyzer-kicker {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(255,255,255,.08);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-weight: 900;
+      opacity: .78;
+    }
+
+    .breathalyzer-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 14px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(36px, 7vw, 60px);
+      line-height: .9;
+      letter-spacing: -.04em;
+    }
+
+    .breathalyzer-button {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--accent);
+      color: var(--buttonText);
+      font: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .breathalyzer-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 30000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .breathalyzer-popup.show {
+      display: flex;
+    }
+
+    .breathalyzer-popup-card {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 18px 26px;
+      background: color-mix(in srgb, var(--bg) 78%, rgba(255,255,255,.24) 22%);
+      color: var(--text);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(36px, 8vw, 62px);
+      line-height: .95;
+      letter-spacing: -.04em;
+      box-shadow: 0 22px 70px rgba(0,0,0,.36);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      white-space: nowrap;
+      animation: breathalyzerPopupIn 220ms ease both;
+    }
+
+    @keyframes breathalyzerPopupIn {
+      from { opacity: 0; transform: translateY(8px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    body.breathalyzer-active .hero,
+    body.breathalyzer-active .bar,
+    body.breathalyzer-active .section-title,
+    body.breathalyzer-active .card,
+    body.breathalyzer-active .bar *,
+    body.breathalyzer-active .section-title *,
+    body.breathalyzer-active .card-info *,
+    body.breathalyzer-active .breathalyzer-card,
+    body.breathalyzer-active .breathalyzer-card * {
+      animation: breathalyzerFloat 30s ease-in-out both !important;
+      will-change: transform, filter;
+    }
+
+    body.breathalyzer-active .card:nth-child(2n),
+    body.breathalyzer-active .card-info *:nth-child(2n),
+    body.breathalyzer-active .bar *:nth-child(2n) {
+      animation-name: breathalyzerFloatAlt !important;
+      animation-delay: .24s !important;
+    }
+
+    body.breathalyzer-active .card:nth-child(3n),
+    body.breathalyzer-active .card-info *:nth-child(3n),
+    body.breathalyzer-active .bar *:nth-child(3n) {
+      animation-name: breathalyzerFloatTiny !important;
+      animation-delay: .42s !important;
+    }
+
+    @keyframes breathalyzerFloat {
+      0% { transform: translate(0,0); filter: blur(0); }
+      22% { transform: translate(5px,-4px); filter: blur(.16px); }
+      48% { transform: translate(-7px,5px); filter: blur(.42px); }
+      76% { transform: translate(3px,3px); filter: blur(.18px); }
+      100% { transform: translate(0,0); filter: blur(0); }
+    }
+
+    @keyframes breathalyzerFloatAlt {
+      0% { transform: translate(0,0); filter: blur(0); }
+      26% { transform: translate(-5px,4px); filter: blur(.16px); }
+      55% { transform: translate(7px,-5px); filter: blur(.42px); }
+      82% { transform: translate(-2px,3px); filter: blur(.18px); }
+      100% { transform: translate(0,0); filter: blur(0); }
+    }
+
+    @keyframes breathalyzerFloatTiny {
+      0% { transform: translate(0,0); filter: blur(0); }
+      30% { transform: translate(2px,2px); filter: blur(.12px); }
+      60% { transform: translate(-3px,-2px); filter: blur(.28px); }
+      86% { transform: translate(1px,2px); filter: blur(.12px); }
+      100% { transform: translate(0,0); filter: blur(0); }
+    }
+
+
+    /* softer semi-transparent breathalyzer popup */
+    .breathalyzer-popup-card {
+      background: color-mix(in srgb, var(--bg) 54%, rgba(255,255,255,.24) 46%) !important;
+      border-color: color-mix(in srgb, var(--border) 70%, var(--text) 30%) !important;
+      opacity: .88;
+      backdrop-filter: blur(18px) saturate(1.08) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(1.08) !important;
+      box-shadow: 0 22px 70px rgba(0,0,0,.30) !important;
+    }
+
+
+    /* make the text bubble itself more transparent */
+    .breathalyzer-popup-card {
+      background: color-mix(in srgb, var(--bg) 38%, rgba(255,255,255,.16) 62%) !important;
+      opacity: .72 !important;
+      border-color: color-mix(in srgb, var(--border) 54%, var(--text) 46%) !important;
+      backdrop-filter: blur(22px) saturate(1.18) !important;
+      -webkit-backdrop-filter: blur(22px) saturate(1.18) !important;
+      box-shadow: 0 18px 60px rgba(0,0,0,.24) !important;
+    }
+
+    .breathalyzer-popup-card {
+      color: color-mix(in srgb, var(--text) 94%, white 6%) !important;
+    }
+
+
+    /* slightly less transparent breathalyzer text bubble */
+    .breathalyzer-popup-card {
+      background: color-mix(in srgb, var(--bg) 50%, rgba(255,255,255,.20) 50%) !important;
+      opacity: .84 !important;
+      border-color: color-mix(in srgb, var(--border) 62%, var(--text) 38%) !important;
+      backdrop-filter: blur(20px) saturate(1.14) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(1.14) !important;
+      box-shadow: 0 20px 64px rgba(0,0,0,.28) !important;
+    }
+
+
+    /* breathalyzer random neutral message fit */
+    .breathalyzer-popup-card {
+      max-width: min(520px, calc(100vw - 32px)) !important;
+      white-space: normal !important;
+    }
+
+
+    /* breathalyzer popup text fit */
+    .breathalyzer-popup-card {
+      width: min(430px, calc(100vw - 36px)) !important;
+      max-width: calc(100vw - 36px) !important;
+      white-space: normal !important;
+      overflow-wrap: break-word !important;
+      word-break: normal !important;
+      padding: 18px 24px !important;
+      font-size: clamp(28px, 7vw, 46px) !important;
+      line-height: 1.02 !important;
+    }
+
+    @media (max-width: 430px) {
+      .breathalyzer-popup-card {
+        width: min(340px, calc(100vw - 28px)) !important;
+        padding: 16px 20px !important;
+        font-size: clamp(25px, 7.2vw, 34px) !important;
+      }
+    }
+
 </style>
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -2238,6 +2460,15 @@
         </div>
       </div>
     </section>
+
+    <section class="breathalyzer-section">
+      <div class="breathalyzer-card">
+        <div class="breathalyzer-kicker">party tool</div>
+        <h3>Алкотестер</h3>
+        <button class="breathalyzer-button" id="breathalyzerButton" type="button">Проверить состояние</button>
+      </div>
+    </section>
+
   </main>
 
   <div class="single-view" id="singleView" aria-hidden="true">
@@ -2278,6 +2509,11 @@
   </div>
 
   <div class="toast" id="toast">Рецепт скопирован</div>
+
+  <div class="breathalyzer-popup" id="breathalyzerPopup" aria-hidden="true">
+    <div class="breathalyzer-popup-card">состояние: подозрительное..</div>
+  </div>
+
 
   <script>
     const THEMES = {
@@ -2469,7 +2705,7 @@
       {id:"pina-colada", title:"Piña Colada", category:"Pool Party", base:"Белый ром", tags:["tropical","creamy","frozen"], short:"Сливочный тропический коктейль со сливками, вишенкой и ананасом.", ingredientsLine:"белый ром, ананасовый сок, кокосовые сливки, сливки 10%, лайм, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 80–100 мл","Кокосовые сливки — 40–50 мл","Сливки 10% — 20–30 мл","Сок лайма — 5–10 мл","Лед — 180–220 г","Ананас для украшения — 1 кусочек"], method:"Все взбить в блендере до густой замороженной текстуры. Если жидко — добавить лед, если слишком густо — немного ананасового сока.", art:{glass:"hurricane",color1:"#FFF0B5",color2:"#F7D77C",garnish:["whip","cherry","ананас"]}},
       {id:"blue-hawaii", title:"Blue Hawaii", category:"Pool Party", base:"Белый ром", tags:["blue","pool","tropical"], short:"Яркий голубой коктейль для бассейна.", ingredientsLine:"белый ром, ананасовый сок, сироп Blue Curaçao, кокосовые сливки по желанию, лед", measurements:["Белый ром — 50 мл","Ананасовый сок — 100 мл","Сироп Blue Curaçao — 20–25 мл","Кокосовые сливки — 20–30 мл, по желанию","Лед — 150–200 г"], method:"Взбить в блендере или собрать в стакане со льдом и перемешать.", art:{glass:"hurricane",color1:"#7BE6F2",color2:"#2AB0E5",garnish:["umbrella","ананас"]}},
       {id:"daiquiri", title:"Daiquiri", category:"Easy Classics", base:"Белый ром", tags:["sour","classic","clean"], short:"Простая кислая классика на роме.", ingredientsLine:"белый ром, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Сок лайма/лимона — 25 мл","Сахарный сироп — 15–20 мл","Лед — 150–200 г"], method:"Встряхнуть в шейкере со льдом или хорошо перемешать в стакане.", art:{glass:"coupe",color1:"#F8F3B2",color2:"#F3D66E",garnish:["lime"]}},
-      {id:"strawberry-daiquiri", title:"Strawberry Daiquiri", category:"Pool Party", base:"Белый ром", tags:["berry","frozen","summer"], short:"Клубничная замороженная-классика.", ingredientsLine:"белый ром, замороженная клубника, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Замороженная клубника — 120–150 г","Сок лайма/лимона — 20–25 мл","Сахарный сироп — 15–20 мл","Лед — 100–150 г"], method:"Все взбить в блендере до густой ледяной текстуры.", art:{glass:"coupe",color1:"#FF9EB0",color2:"#FF506E",garnish:["strawberry"]}},
+      {id:"strawberry-daiquiri", title:"Strawberry Daiquiri", category:"Pool Party", base:"Белый ром", tags:["berry","frozen","summer"], short:"Клубничная frozen-классика.", ingredientsLine:"белый ром, замороженная клубника, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Замороженная клубника — 120–150 г","Сок лайма/лимона — 20–25 мл","Сахарный сироп — 15–20 мл","Лед — 100–150 г"], method:"Все взбить в блендере до густой ледяной текстуры.", art:{glass:"coupe",color1:"#FF9EB0",color2:"#FF506E",garnish:["strawberry"]}},
       {id:"strawberry-coconut-daiquiri", title:"Strawberry & Coconut Daiquiri", category:"Pool Party", base:"Белый ром", tags:["berry","coconut","blender"], short:"Розовый замороженный daiquiri с мягким кокосовым вкусом.", ingredientsLine:"белый ром, замороженная клубника, кокосовое молоко/сливки, лайм/лимон, сахарный сироп, лед", measurements:["Белый ром — 50 мл","Замороженная клубника — 120–150 г","Кокосовое молоко/сливки — 40–50 мл","Сок лайма/лимона — 15–20 мл","Сахарный сироп — 10–15 мл","Лед — 100–150 г"], method:"Все взбить в блендере. Если слишком густо — добавить чуть кокоса или сока.", art:{glass:"coupe",color1:"#FFD1D8",color2:"#FF87A0",garnish:["strawberry","coconut"]}},
       {id:"mojito", title:"Mojito", category:"Fresh & Sparkling", base:"Белый ром", tags:["mint","fresh","sparkling"], short:"Свежая мятная классика, удобно делать сразу кувшином.", ingredientsLine:"белый ром, мята, лайм, сахар, спрайт, лед", measurements:["Белый ром — 50 мл","Мята — 8–12 листиков","Лайм — 1/2 шт. или 20–25 мл сока","Сахар — 2 ч. л. или сироп 15–20 мл","Спрайт — 100–150 мл","Лед — 150–200 г"], method:"Мяту, лайм и сахар слегка размять в стакане, добавить лед, ром и спрайт, перемешать.", art:{glass:"highball",color1:"#ECFFF4",color2:"#C2EDD2",garnish:["mint","lime"]}},
       {id:"cuba-libre", title:"Cuba Libre", category:"Easy Classics", base:"Белый ром", tags:["cola","easy","classic"], short:"Быстрая классика на любой случай.", ingredientsLine:"белый ром, кола, лайм/лимон, лед", measurements:["Белый ром — 50 мл","Кола — 120–150 мл","Лайм/лимон — 1–2 дольки или 10 мл сока","Лед — 150 г"], method:"Собрать в стакане со льдом: ром, лайм, кола, перемешать.", art:{glass:"highball",color1:"#8B4B32",color2:"#4B2418",garnish:["lime"]}},
@@ -2861,6 +3097,50 @@ render();
 
     setTheme(activeCategory);
     render();
+    // Safe standalone breathalyzer handler
+    (function () {
+      const btn = document.getElementById("breathalyzerButton");
+      const popup = document.getElementById("breathalyzerPopup");
+      const toast = document.getElementById("toast");
+
+      if (!btn || !popup) return;
+
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (toast) toast.classList.remove("show");
+
+        const shouldTrigger = Math.random() < 0.45;
+        const message = shouldTrigger
+          ? "состояние: подозрительное.."
+          : "делает вид, что все ок";
+
+        const popupCard = popup.querySelector(".breathalyzer-popup-card");
+        if (popupCard) popupCard.textContent = message;
+
+        if (shouldTrigger) {
+          document.body.classList.remove("breathalyzer-active");
+          void document.body.offsetWidth;
+          document.body.classList.add("breathalyzer-active");
+
+          window.clearTimeout(window.__breathalyzerEffectTimer);
+          window.__breathalyzerEffectTimer = window.setTimeout(function () {
+            document.body.classList.remove("breathalyzer-active");
+          }, 30000);
+        }
+
+        popup.classList.add("show");
+        popup.setAttribute("aria-hidden", "false");
+
+        window.clearTimeout(window.__breathalyzerPopupTimer);
+        window.__breathalyzerPopupTimer = window.setTimeout(function () {
+          popup.classList.remove("show");
+          popup.setAttribute("aria-hidden", "true");
+        }, shouldTrigger ? 3000 : 2200);
+      });
+    })();
+
   </script>
 </body>
 </html>
